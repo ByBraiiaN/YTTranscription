@@ -2,6 +2,7 @@ import pytube
 from pytube.exceptions import PytubeError
 import whisper
 import streamlit as st
+import ffmpeg
 
 def main():
     st.set_page_config(page_title="YT Transcription with Whisper", page_icon="✒️")
