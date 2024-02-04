@@ -3,6 +3,7 @@ from pytube.exceptions import PytubeError
 import whisper
 import streamlit as st
 import ffmpeg
+import time
 
 def main():
     st.set_page_config(page_title="YT Transcription with Whisper", page_icon="✒️")
@@ -40,15 +41,18 @@ def main():
                 st.error(f"Video {url} : {e}.")
                 st.stop()
 
+            start = time.time()
             model = whisper.load_model(modelo_whisper) 
             result = model.transcribe('tmp.mp4')
+            end = time.time()
             transcription = result['text']
 
             st.image(video.thumbnail_url)
             st.session_state.texto_generado = transcription
             st.header(video.title)   # keywords length publish_date thumbnail_url views
             st.code(transcription, language=None)
-            st.divider()
+            #st.divider()
+            st.markdown('Time: ' + str(round(end-start, 2)) + ' s')
             st.markdown('**Keywords:** ' + ', '.join(video.keywords))
             st.markdown('**Words:** ' + str(len(transcription.split())))
 
