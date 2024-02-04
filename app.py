@@ -52,9 +52,9 @@ def main():
             st.header(video.title)   # keywords length publish_date thumbnail_url views
             st.code(transcription, language=None)
             #st.divider()
-            st.markdown('Time: ' + str(round(end-start, 2)) + ' s')
-            st.markdown('**Keywords:** ' + ', '.join(video.keywords))
+            st.markdown('**Time:** ' + str(round((end-start) / 60, 2)) + ' m')
             st.markdown('**Words:** ' + str(len(transcription.split())))
+            st.markdown('**Keywords:** ' + ', '.join(video.keywords))  
 
 
 if __name__ == "__main__":
