@@ -13,7 +13,7 @@ def main():
     url = col1.text_input("Enter YouTube URL:", placeholder="https://www.youtube.com/watch?v=YyAQ94iomtU")
     transcription = ""
 
-    modelo_whisper = col2.selectbox("Select a Whisper model:", ["base", "small", "medium", "large", "base.en", "small.en"])
+    modelo_whisper = col2.selectbox("Select a Whisper model:", ["base", "small", "base.en", "small.en"]) # tiny medium large
 
     st.markdown(
         """
@@ -48,8 +48,9 @@ def main():
             st.session_state.texto_generado = transcription
             st.header(video.title)   # keywords length publish_date thumbnail_url views
             st.code(transcription, language=None)
-            st.text('**Keywords:** ' + ', '.join(video.keywords))
-            st.text('**Words:** ' + str(len(transcription.split())))
+            st.divider()
+            st.markdown('**Keywords:** ' + ', '.join(video.keywords))
+            st.markdown('**Words:** ' + str(len(transcription.split())))
 
 
 if __name__ == "__main__":
